@@ -14,8 +14,14 @@ aliyun ram CreateUser --UserName $AdminUserName --DisplayName 管理员
 # 为admin授权
 aliyun ram AttachPolicyToUser --PolicyName "AdministratorAccess" --PolicyType "System" --UserName $AdminUserName
 
+# 指定admin用户的控制台登录密码
+aliyun ram UpdateLoginProfile --UserName $AdminUserName --Password "Your_password1234"
+
 # 为admin 创建AK,后面的操作可以用这把AK替换主账号的AK
+# 您也可以使用admin用户登录控制台,直接使用CloudShell窗口完成下列操作
 aliyun ram CreateAccessKey --UserName $AdminUserName >> ./admin_ak.txt
+
+
 
 # 将admin加入云管理员组
 aliyun ram AddUserToGroup --GroupName $CloudAdminGroupName --UserName $AdminUserName

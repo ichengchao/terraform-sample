@@ -13,6 +13,13 @@ resource "alicloud_ram_user" "user_admin" {
   display_name = "管理员"
 }
 
+# 指定admin用户的控制台登录密码
+resource "alicloud_ram_login_profile" "user_admin_profile" {
+  user_name = alicloud_ram_user.user_admin.name
+  password  = "Your_password1234"
+}
+
+
 # 为admin授权AdministratorAccess
 resource "alicloud_ram_user_policy_attachment" "user_admin_AdministratorAccess" {
   policy_name = "AdministratorAccess"
